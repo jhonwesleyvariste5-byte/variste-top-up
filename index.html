@@ -1,46 +1,214 @@
-Ti Jhon Top-Up
-│
-├── Accueil
-│   ├── Bienvenue sur Ti Jhon Top-Up
-│   └── Recharge rapide et sécurisée
-│
-├── Jeux
-│   └── Free Fire
-│       ├── 110 💎 — 155 HTG
-│       ├── 341 💎 — 469 HTG
-│       ├── 572 💎 — 765 HTG
-│       ├── 1 166 💎 — [prix]
-│       ├── 2 400 💎 — [prix]
-│       └── ...
-│
-├── Gift Card
-│   ├── Google Play
-│   ├── Apple Gift Card
-│   └── Autres cartes
-│
-├── Streaming
-│   ├── Netflix
-│   ├── Spotify
-│   └── Autres services
-│
-├── Top-Up automatique
-│   ├── Choisir le produit
-│   ├── Entrer l'ID joueur
-│   ├── Choisir le mode de paiement
-│   ├── Vérifier la commande
-│   └── Confirmation du paiement
-│
-├── Commandes
-│   ├── Nouvelle commande
-│   └── Historique des commandes
-│
-├── Compte
-│   ├── Connexion
-│   ├── Inscription
-│   └── Mon profil
-│
-└── Administration
-    ├── Gestion des produits
-    ├── Gestion des prix
-    ├── Gestion des commandes
-    └── Gestion des utilisateurs
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ti Jhon Top-Up</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 25px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #d1d5db;
+    }
+
+    nav {
+      background: white;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111827;
+      margin: 0 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #16a34a;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #15803d;
+    }
+
+    #message {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+      background: #dcfce7;
+      color: #166534;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>💎 Ti Jhon Top-Up</h1>
+    <p>Recharge Free Fire rapidement et facilement</p>
+  </header>
+
+  <nav>
+    <a href="#">Accueil</a>
+    <a href="#commande">Free Fire</a>
+    <a href="#">Gift Card</a>
+    <a href="#">Streaming</a>
+  </nav>
+
+  <main class="container">
+
+    <div class="card" id="commande">
+
+      <h2>🎮 Recharge Free Fire</h2>
+
+      <label for="player">ID du joueur</label>
+      <input
+        type="text"
+        id="player"
+        placeholder="Entre ton ID Free Fire"
+      >
+
+      <label for="diamonds">Choisir les diamants</label>
+      <select id="diamonds">
+        <option value="100">100 Diamants</option>
+        <option value="310">310 Diamants</option>
+        <option value="520">520 Diamants</option>
+        <option value="1060">1060 Diamants</option>
+        <option value="2180">2180 Diamants</option>
+        <option value="5600">5600 Diamants</option>
+      </select>
+
+      <label for="name">Nom du client</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Ton nom"
+      >
+
+      <button onclick="order()">
+        Commander maintenant
+      </button>
+
+      <div id="message"></div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Ti Jhon Top-Up — Tous droits réservés.
+  </footer>
+
+  <script>
+    function order() {
+      const player = document.getElementById("player").value.trim();
+      const diamonds = document.getElementById("diamonds").value;
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message");
+
+      if (!player || !name) {
+        message.style.display = "block";
+        message.style.background = "#fee2e2";
+        message.style.color = "#991b1b";
+        message.textContent =
+          "⚠️ Veuillez entrer votre ID Free Fire et votre nom.";
+        return;
+      }
+
+      message.style.display = "block";
+      message.style.background = "#dcfce7";
+      message.style.color = "#166534";
+
+      message.textContent =
+        "✅ Commande enregistrée : " +
+        diamonds +
+        " diamants pour " +
+        name +
+        " (ID : " +
+        player +
+        ").";
+    }
+  </script>
+
+</body>
+    </html>
