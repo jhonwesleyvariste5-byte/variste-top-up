@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Ti Jhon Top-Up</title>
 
   <style>
@@ -15,69 +14,151 @@
     }
 
     body {
-      background: #f3f4f6;
-      color: #222;
+      background: #f5f7fb;
+      color: #111827;
     }
 
     header {
       background: #111827;
       color: white;
-      padding: 18px;
-      text-align: center;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    header h1 {
-      font-size: 25px;
-      margin-bottom: 6px;
+    .top {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    header p {
-      font-size: 14px;
-      color: #d1d5db;
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .cart {
+      background: #facc15;
+      color: #111827;
+      padding: 9px 13px;
+      border-radius: 8px;
+      font-weight: bold;
     }
 
     nav {
       background: white;
-      padding: 12px;
+      padding: 13px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-bottom: 1px solid #e5e7eb;
     }
 
     nav a {
-      text-decoration: none;
       color: #111827;
-      margin: 0 8px;
-      font-weight: bold;
+      text-decoration: none;
+      margin: 0 9px;
       font-size: 14px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #111827, #374151);
+      color: white;
+      padding: 45px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      background: #facc15;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .container {
-      max-width: 500px;
+      max-width: 1100px;
       margin: 30px auto;
-      padding: 20px;
+      padding: 0 15px;
     }
 
-    .card {
+    .title {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .product {
       background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      text-align: center;
     }
 
-    .card h2 {
-      text-align: center;
+    .diamond {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .product h3 {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 19px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .product button {
+      width: 100%;
+      padding: 11px;
+      background: #111827;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .order {
+      background: white;
+      margin-top: 35px;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    }
+
+    .order h2 {
       margin-bottom: 20px;
     }
 
     label {
       display: block;
-      margin-top: 15px;
-      margin-bottom: 7px;
+      margin: 13px 0 6px;
       font-weight: bold;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       padding: 13px;
       border: 1px solid #d1d5db;
@@ -85,9 +166,9 @@
       font-size: 15px;
     }
 
-    button {
+    .submit {
       width: 100%;
-      margin-top: 22px;
+      margin-top: 20px;
       padding: 14px;
       border: none;
       border-radius: 8px;
@@ -98,117 +179,175 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #15803d;
-    }
-
-    #message {
-      margin-top: 18px;
-      padding: 12px;
-      border-radius: 8px;
+    #result {
       display: none;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 8px;
       background: #dcfce7;
       color: #166534;
-      text-align: center;
     }
 
     footer {
-      text-align: center;
+      margin-top: 40px;
       padding: 25px;
-      color: #6b7280;
+      background: #111827;
+      color: #d1d5db;
+      text-align: center;
       font-size: 13px;
+    }
+
+    @media(max-width:600px) {
+      .hero h1 {
+        font-size: 25px;
+      }
+
+      nav a {
+        margin: 0 5px;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>💎 Ti Jhon Top-Up</h1>
-    <p>Recharge Free Fire rapidement et facilement</p>
-  </header>
+<header>
+  <div class="top">
+    <div class="logo">💎 Ti Jhon</div>
+    <div class="cart">🛒 Panier <span id="cartCount">0</span></div>
+  </div>
+</header>
 
-  <nav>
-    <a href="#">Accueil</a>
-    <a href="#commande">Free Fire</a>
-    <a href="#">Gift Card</a>
-    <a href="#">Streaming</a>
-  </nav>
+<nav>
+  <a href="#accueil">Accueil</a>
+  <a href="#freefire">Free Fire</a>
+  <a href="#commande">Commander</a>
+  <a href="#support">Support</a>
+</nav>
 
-  <main class="container">
+<section class="hero" id="accueil">
+  <h1>Ti Jhon Top-Up</h1>
+  <p>Recharge tes jeux rapidement et simplement.</p>
+  <button onclick="document.getElementById('freefire').scrollIntoView()">
+    Voir les offres
+  </button>
+</section>
 
-    <div class="card" id="commande">
+<main class="container">
 
-      <h2>🎮 Recharge Free Fire</h2>
+  <h2 class="title" id="freefire">🎮 Free Fire</h2>
 
-      <label for="player">ID du joueur</label>
-      <input
-        type="text"
-        id="player"
-        placeholder="Entre ton ID Free Fire"
-      >
+  <div class="products">
 
-      <label for="diamonds">Choisir les diamants</label>
-      <select id="diamonds">
-        <option value="100">100 Diamants</option>
-        <option value="310">310 Diamants</option>
-        <option value="520">520 Diamants</option>
-        <option value="1060">1060 Diamants</option>
-        <option value="2180">2180 Diamants</option>
-        <option value="5600">5600 Diamants</option>
-      </select>
-
-      <label for="name">Nom du client</label>
-      <input
-        type="text"
-        id="name"
-        placeholder="Ton nom"
-      >
-
-      <button onclick="order()">
-        Commander maintenant
-      </button>
-
-      <div id="message"></div>
-
+    <div class="product">
+      <div class="diamond">💎</div>
+      <h3>100 Diamants</h3>
+      <div class="price">150 HTG</div>
+      <button onclick="selectPack('100 Diamants')">Commander</button>
     </div>
 
-  </main>
+    <div class="product">
+      <div class="diamond">💎</div>
+      <h3>310 Diamants</h3>
+      <div class="price">375 HTG</div>
+      <button onclick="selectPack('310 Diamants')">Commander</button>
+    </div>
 
-  <footer>
-    © 2026 Ti Jhon Top-Up — Tous droits réservés.
-  </footer>
+    <div class="product">
+      <div class="diamond">💎</div>
+      <h3>520 Diamants</h3>
+      <div class="price">560 HTG</div>
+      <button onclick="selectPack('520 Diamants')">Commander</button>
+    </div>
 
-  <script>
-    function order() {
-      const player = document.getElementById("player").value.trim();
-      const diamonds = document.getElementById("diamonds").value;
-      const name = document.getElementById("name").value.trim();
-      const message = document.getElementById("message");
+    <div class="product">
+      <div class="diamond">💎</div>
+      <h3>1060 Diamants</h3>
+      <div class="price">1160 HTG</div>
+      <button onclick="selectPack('1060 Diamants')">Commander</button>
+    </div>
 
-      if (!player || !name) {
-        message.style.display = "block";
-        message.style.background = "#fee2e2";
-        message.style.color = "#991b1b";
-        message.textContent =
-          "⚠️ Veuillez entrer votre ID Free Fire et votre nom.";
-        return;
-      }
+    <div class="product">
+      <div class="diamond">💎</div>
+      <h3>2180 Diamants</h3>
+      <div class="price">2500 HTG</div>
+      <button onclick="selectPack('2180 Diamants')">Commander</button>
+    </div>
 
-      message.style.display = "block";
-      message.style.background = "#dcfce7";
-      message.style.color = "#166534";
+  </div>
 
-      message.textContent =
-        "✅ Commande enregistrée : " +
-        diamonds +
-        " diamants pour " +
-        name +
-        " (ID : " +
-        player +
-        ").";
+  <section class="order" id="commande">
+
+    <h2>🛒 Passer une commande</h2>
+
+    <label>ID du joueur</label>
+    <input id="player" type="text" placeholder="Entre ton ID Free Fire">
+
+    <label>Choisir les diamants</label>
+    <select id="diamonds">
+      <option>100 Diamants</option>
+      <option>310 Diamants</option>
+      <option>520 Diamants</option>
+      <option>1060 Diamants</option>
+      <option>2180 Diamants</option>
+    </select>
+
+    <label>Nom du client</label>
+    <input id="name" type="text" placeholder="Ton nom">
+
+    <button class="submit" onclick="order()">
+      Commander maintenant
+    </button>
+
+    <div id="result"></div>
+
+  </section>
+
+</main>
+
+<footer id="support">
+  © 2026 Ti Jhon Top-Up — Support client
+</footer>
+
+<script>
+  let count = 0;
+
+  function selectPack(pack) {
+    document.getElementById("diamonds").value = pack;
+    document.getElementById("commande").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  function order() {
+    const player = document.getElementById("player").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const diamonds = document.getElementById("diamonds").value;
+    const result = document.getElementById("result");
+
+    if (!player || !name) {
+      result.style.display = "block";
+      result.style.background = "#fee2e2";
+      result.style.color = "#991b1b";
+      result.textContent =
+        "⚠️ Veuillez remplir votre ID joueur et votre nom.";
+      return;
     }
-  </script>
+
+    count++;
+    document.getElementById("cartCount").textContent = count;
+
+    result.style.display = "block";
+    result.style.background = "#dcfce7";
+    result.style.color = "#166534";
+
+    result.textContent =
+      "✅ Commande préparée : " + diamonds +
+      " — ID : " + player +
+      " — Client : " + name;
+  }
+</script>
 
 </body>
-    </html>
+</html>
