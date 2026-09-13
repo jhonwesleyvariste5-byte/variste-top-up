@@ -1,130 +1,403 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💎 Ti Jhon Top-Up</title>
 
-header {
-    background: #ff6600;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.logo {
-    font-size: 22px;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+    }
 
-#menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-}
+    header {
+      background: #111827;
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-#sidebar {
-    background: #222;
-    display: flex;
-    flex-direction: column;
-}
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+    }
 
-#sidebar a {
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    border-bottom: 1px solid #444;
-}
+    #menu-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 22px;
+      cursor: pointer;
+    }
 
-#sidebar a:hover {
-    background: #444;
-}
+    #sidebar {
+      display: none;
+      background: #1f2937;
+      padding: 15px;
+    }
 
-.banner {
-    background: linear-gradient(to right, #ff6600, #ff9900);
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-}
+    #sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 13px;
+      margin-bottom: 5px;
+      border-radius: 7px;
+    }
 
-.games {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 20px;
-}
+    #sidebar a:hover {
+      background: #2563eb;
+    }
 
-.card {
-    background: white;
-    border-radius: 10px;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+    #sidebar.active {
+      display: block;
+    }
 
-.card img {
-    width: 100%;
-    border-radius: 10px;
-}
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      text-align: center;
+      padding: 55px 20px;
+    }
 
-.card h3 {
-    margin-top: 10px;
-}<script src="script.js"></script>
-<label>ID du joueur</label>
-<input type="text" id="player" placeholder="Entre ton ID Free Fire">
+    .hero h1 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
 
-<label>Choisir les diamants</label>
-<select id="diamonds">
-  <option>100 Diamants</option>
-  <option>310 Diamants</option>
-  <option>520 Diamants</option>
-  <option>1060 Diamants</option>
-  <option>2180 Diamants</option>
-  <option>5600 Diamants</option>
-</select>
+    .hero p {
+      font-size: 17px;
+    }
 
-<label>Nom du client</label>
-<input type="text" id="name" placeholder="Ton nom">
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 35px auto;
+    }
 
-<button onclick="order()">Commander maintenant</button>
-<!-- DEPOT NATCASH -->
-<section class="container" id="depot">
-  <h2 class="section-title">💳 Dépôt NatCash</h2>
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 27px;
+    }
 
-  <div class="order-box">
-    <h3>📱 Paiement par NatCash</h3>
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
 
-    <p style="margin:15px 0;">
-      Envoyez le montant de votre commande au numéro NatCash :
-    </p>
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
 
-    <div style="background:#f1f5f9;padding:18px;border-radius:10px;text-align:center;">
-      <strong>Nom :</strong>
-      <p>Variste</p>
+    .card h3 {
+      margin: 10px 0;
+    }
 
-      <strong>Numéro NatCash :</strong>
-      <h2>33717514</h2>
+    .price {
+      color: #2563eb;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .btn {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .order-box {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .order-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .payment {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .natcash-number {
+      font-size: 28px;
+      color: #16a34a;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .section-title {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">💎 Ti Jhon Top-Up</div>
+    <button id="menu-btn">☰</button>
+  </header>
+
+  <nav id="sidebar">
+    <a href="#accueil">🏠 Accueil</a>
+    <a href="#freefire">🎮 Free Fire</a>
+    <a href="#giftcard">🎁 Gift Cards</a>
+    <a href="#streaming">📺 Streaming</a>
+    <a href="#depot">💳 Dépôt</a>
+  </nav>
+
+  <section class="hero" id="accueil">
+    <h1>Recharge Free Fire</h1>
+    <p>Rapide • Simple • Disponible 24/7</p>
+  </section>
+
+  <section class="container" id="freefire">
+    <h2 class="section-title">🎮 Free Fire</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>💎 100 Diamants</h3>
+        <p class="price">Prix à définir</p>
+        <button class="btn" onclick="choisir('100 Diamants')">
+          Choisir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💎 310 Diamants</h3>
+        <p class="price">Prix à définir</p>
+        <button class="btn" onclick="choisir('310 Diamants')">
+          Choisir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💎 520 Diamants</h3>
+        <p class="price">Prix à définir</p>
+        <button class="btn" onclick="choisir('520 Diamants')">
+          Choisir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💎 1060 Diamants</h3>
+        <p class="price">Prix à définir</p>
+        <button class="btn" onclick="choisir('1060 Diamants')">
+          Choisir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💎 2180 Diamants</h3>
+        <p class="price">Prix à définir</p>
+        <button class="btn" onclick="choisir('2180 Diamants')">
+          Choisir
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>💎 5600 Diamants</h3>
+        <p class="price">Prix à définir</p>
+        <button class="btn" onclick="choisir('5600 Diamants')">
+          Choisir
+        </button>
+      </div>
+
     </div>
+  </section>
 
-    <p style="margin-top:15px;">
-      Après le paiement, conservez votre preuve de transaction.
-    </p>
-  </div>
-</section>
-<section id="depot">
-  <h2>💳 Dépôt NatCash</h2>
+  <section class="container">
+    <h2 class="section-title">📝 Commander</h2>
 
-  <div class="order-box">
-    <h3>📱 Paiement par NatCash</h3>
-    <p>Envoyez votre paiement au numéro :</p>
+    <div class="order-box">
 
-    <div style="text-align:center; padding:15px;">
-      <strong>Nom : Variste</strong>
-      <h2>33717514</h2>
+      <label>ID du joueur</label>
+      <input
+        type="text"
+        id="player"
+        placeholder="Entre ton ID Free Fire"
+      >
+
+      <label>Choisir les diamants</label>
+      <select id="diamonds">
+        <option>100 Diamants</option>
+        <option>310 Diamants</option>
+        <option>520 Diamants</option>
+        <option>1060 Diamants</option>
+        <option>2180 Diamants</option>
+        <option>5600 Diamants</option>
+      </select>
+
+      <label>Nom du client</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Ton nom"
+      >
+
+      <button class="order-btn" onclick="commander()">
+        Commander maintenant
+      </button>
+
     </div>
+  </section>
 
-    <p>Après le paiement, conservez votre preuve de transaction.</p>
-  </div>
-</section>
+  <section class="container" id="giftcard">
+    <h2 class="section-title">🎁 Gift Cards</h2>
+
+    <div class="card">
+      <h3>Gift Cards</h3>
+      <p>Produits disponibles prochainement.</p>
+    </div>
+  </section>
+
+  <section class="container" id="streaming">
+    <h2 class="section-title">📺 Streaming</h2>
+
+    <div class="card">
+      <h3>Services Streaming</h3>
+      <p>Services disponibles prochainement.</p>
+    </div>
+  </section>
+
+  <section class="container" id="depot">
+    <h2 class="section-title">💳 Dépôt</h2>
+
+    <div class="payment">
+      <h3>📱 Paiement par NatCash</h3>
+
+      <p>Informations de paiement :</p>
+
+      <p><strong>Nom :</strong> Variste</p>
+
+      <div class="natcash-number">
+        33717514
+      </div>
+
+      <p>
+        Conservez votre preuve de transaction.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Ti Jhon Top-Up</p>
+    <p>Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+
+    menuBtn.addEventListener("click", function() {
+      sidebar.classList.toggle("active");
+    });
+
+    function choisir(produit) {
+      document.getElementById("diamonds").value = produit;
+      window.location.hash = "freefire";
+      window.scrollTo({
+        top: document.querySelector(".order-box").offsetTop - 80,
+        behavior: "smooth"
+      });
+    }
+
+    function commander() {
+      const player = document.getElementById("player").value;
+      const diamonds = document.getElementById("diamonds").value;
+      const name = document.getElementById("name").value;
+
+      if (player === "" || name === "") {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      alert(
+        "Commande préparée !\n\n" +
+        "Client : " + name + "\n" +
+        "ID joueur : " + player + "\n" +
+        "Produit : " + diamonds
+      );
+    }
+  </script>
+
+</body>
+      </html>
